@@ -1,0 +1,159 @@
+Installed packages:
+-------------------
+
+Installation in Laravel | laravel-permission | Spatie
+https://spatie.be/docs/laravel-permission/v5/installation-laravel
+
+Installation and Setup | laravel-activitylog | Spatie
+https://spatie.be/docs/laravel-activitylog/v4/installation-and-setup
+
+barryvdh/laravel-debugbar: Laravel Debugbar (Integrates PHP Debug Bar)
+https://github.com/barryvdh/laravel-debugbar
+
+Starter Kits - Laravel - The PHP Framework For Web Artisans
+https://laravel.com/docs/9.x/starter-kits
+
+Sweet Alert
+https://realrashid.github.io/sweet-alert
+
+++++++++++++++++++++++ Spatie media library - START +++++++++++++++++++++++++++
+    Model:
+
+    1. implements HasMedia
+    2. use InteractsWithMedia
+    3. public function registerMediaConversions(Media $media = null): void
+        {
+            $this->addMediaConversion('preview')->fit(Manipulations::FIT_CROP, 300, 300)->nonQueued();
+            $this->addMediaConversion('thump')->fit(Manipulations::FIT_CROP, 50, 50)->nonQueued();
+
+            // ->performOnCollections('images', 'downloads');
+        }
+    4. public function registerMediaCollections(): void
+        {
+            $this->addMediaCollection('User')
+                ->registerMediaConversions(function (Media $media) {
+                    $this->addMediaConversion('preview')->fit(Manipulations::FIT_CROP, 300, 300)->nonQueued();
+                    $this->addMediaConversion('thump')->fit(Manipulations::FIT_CROP, 50, 50)->nonQueued();
+                });
+
+            // ->performOnCollections('images', 'downloads');
+
+            /* ->acceptsFile(function (File $file) {
+                return $file->mimeType === 'image/jpeg';
+            }); */
+
+            // ->acceptsMimeTypes(['image/jpeg']);
+
+            // ->useDisk('s3');
+
+            // ->singleFile();
+
+            // ->onlyKeepLatest(3);
+
+            // ->withResponsiveImages();
+        }
+
+    Controller:
+
+    // $mediaCollections = $yourModel->getRegisteredMediaCollections();
+
+    // single file
+    $yourModel->addMedia($pathToImage)->toMediaCollection('avatar');
+    $yourModel->getMedia('avatar')->count(); // returns 1
+    $yourModel->getFirstMediaUrl('avatar'); // will return an url to the `$pathToImage` file */
+
+    $yourModel->addMedia($pathToImage)->toMediaCollection('my-collection');
+    $yourModel->getFirstMediaUrl('my-collection', 'thumb') // returns an url to a 100x100 version of the added image.
+
+        ->usingName('new name')
+        ->usingFileName('new name')
+
+        ->sanitizingFileName(function($fileName) {
+            return strtolower(str_replace(['#', '/', '\\', ' '], '-', $fileName));
+        })
+
+    // retreive the media from the specific collection
+        // will return media instances for all files in the images collection
+        $yourModel->getMedia('images');
+
+        // will returns media instance for all files in the downloads collection
+        $yourModel->getMedia('downloads');
+
+        // clear all media collection
+        $yourModel->clearMediaCollection('images');
+
+
+
+    // upload image from request
+        if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+            $client->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+        }
+
+    // upload multiple files
+        // option-1
+        if ($request->hasFile('photo')) {
+            foreach ($request->input('photo', []) as $photo) {
+                $listing->addMediaFromRequest('photo')->toMediaCollection('photos');
+            }
+        }
+
+        // option-2
+        if ($request->hasFile('photo')) {
+            $fileAdders = $listing->addMultipleMediaFromRequest(['photo'])->each(function ($fileAdder) {
+                $fileAdder->toMediaCollection('photos');
+            });
+        }
+
+    // get media details
+        media->getPath();  // the path to the where the original image is stored
+        $media->getPath('thumb'); // the path to the converted image with dimensions 368x232
+        $media->getUrl();  // the url to the where the original image is stored
+        $media->getFullUrl();  // url including domain
+        $media->getUrl('thumb'); // the url to the converted image with dimensions 368x232
+        $temporaryS3Url = $userMedia[0]->getTemporaryUrl(\Carbon\Carbon::now()->addMinutes(5)); // for S3
+
+    $media = $user->getFirstMedia();
+    $url = $user->getFirstMediaUrl();
+
+    // add media from path
+    // $user->addMedia(public_path('media/default.jpg'))->preservingOriginal()->toMediaCollection('User');
+
+    // deleting media
+        $mediaItems[0]->delete();
+        $yourModel->delete();
+        $yourModel->deletePreservingMedia(); // all associated files will be preserved
+        $yourModel->clearMediaCollection(); // all media will be deleted
+        $yourModel->clearMediaCollection('images'); // all media in the images collection will be deleted
+        $yourModel->clearMediaCollectionExcept('images', $yourModel->getFirstMedia()); // This will remove all associated media in the 'images' collection except the first media
+
+    // download media as zip file
+        $downloads = $yourmodel->getMedia('User');
+        return MediaStream::create('my-files.zip')->addMedia($downloads);
+
+    // download single file
+        $downloads = $user->getFirstMedia('User');
+        return $downloads;
+        return response()->download($downloads->getPath(), $downloads->file_name); // download
+
+    // change media name in database
+        $media->name = 'new name';
+        $media->save();
+
+    // change media name and file-name
+        $media->file_name = 'new-name.jpg';
+        $media->save(); // The new name gets saved.
+        dd($media->size, $media->human_readable_size, $media->mime_type);
+
+++++++++++++++++++++++ Spatie media library - END +++++++++++++++++++++++++++
+
+
+++++++++++++++++++++++ Spatie role permission - STARTS +++++++++++++++++++++++++++
+
+    Using Permissions via Roles | laravel-permission | Spatie
+    https://spatie.be/docs/laravel-permission/v5/basic-usage/role-permissions
+
+    #tutorial
+    Easy roles and permissions in Laravel 5 - QCode
+    https://qcode.in/easy-roles-and-permissions-in-laravel-5-4/
+
+++++++++++++++++++++++ Spatie role permission - STARTS +++++++++++++++++++++++++++

@@ -1,0 +1,27 @@
+// #TODO #LCNOTE
+
+/************ FUNCTIONALITY ************ /
+1. Create Country/State/City CRUD [Single/Multiselect filter/Pagination]
+2. Create PDF Code
+3. Media upload Code
+4. Laravel Spatie backup
+5. Razorpay functionality
+6. Database factory and seeder
+7. MongoDB CRUD
+8. Datatable
+9. Pagination
+10. Emaling
+11. Activity log viewer index page with filter, Causer/Object/From/To
+12.
+
+/************ PACKAGES ************ /
+
+Base installation | laravel-medialibrary | Spatie
+https://spatie.be/docs/laravel-medialibrary/v10/installation-setup
+
+razorpay/razorpay-php: Razorpay PHP Library
+https://github.com/razorpay/razorpay-php
+
+barryvdh/laravel-dompdf: A DOMPDF Wrapper for Laravel
+https://github.com/barryvdh/laravel-dompdf
+

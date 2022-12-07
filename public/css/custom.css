@@ -1,0 +1,165 @@
+.ck-editor__editable,
+textarea {
+    min-height: 150px;
+}
+
+.datatable {
+    width: 100% !important;
+}
+
+table.dataTable tbody td.select-checkbox::before,
+table.dataTable tbody td.select-checkbox::after,
+table.dataTable tbody th.select-checkbox::before,
+table.dataTable tbody th.select-checkbox::after {
+    top: 50%;
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dt-buttons {
+    margin-bottom: 0.333em;
+}
+
+.dt-buttons .btn {
+    margin-left: 0.333em;
+    border-radius: 0;
+}
+
+.table.datatable {
+    box-sizing: border-box;
+    border-collapse: collapse;
+    font-size: .9em;
+}
+
+table.dataTable thead th {
+    border-top: none;
+    border-bottom: 1px dashed #dee2e6;
+    color: #c2c2c5;
+    font-weight: normal;
+}
+
+table.datatable tbody td {
+    border: 1px dashed #dee2e6;
+    border-style: none none dashed none ;
+    vertical-align: top;
+    padding: 5px 5px;
+}
+
+.dataTables_info {
+    font-size: .9em;
+}
+
+.page-link {
+    padding: 0.2rem 0.75rem;
+}
+
+table.dataTable tbody>tr.selected {
+    background-color: #f1f1f1;
+}
+
+table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
+    content: '\2713';
+    text-shadow: none;
+}
+
+.dataTables_wrapper.no-footer .dataTables_scrollBody {
+    /* border-bottom: 1px dashed #dee2e6; */
+    border-bottom: none;
+}
+
+/*
+* this is for datatable row action buttons
+*/
+.dataTable-btn-actions {
+    padding: 0.1rem 0.2rem;
+    font-size: .9em;
+    line-height: 1.3;
+    border-radius: 0.1rem;
+}
+
+.dropdown-item-font {
+    font-size: .9em;
+}
+
+/*
+* for hiding datatable buttons and search option
+*/
+.dataTables_filter, .dt-buttons, .dataTables_length {
+    display: none;
+}
+
+.select2 {
+    max-width: 100%;
+    width: 100%;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc {
+    background-image: none;
+}
+
+.btn-group-xs > .btn,
+.btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.searchable-title {
+    font-weight: bold;
+}
+.select2-container--open {
+    z-index: 9999;
+}
+.searchable-fields {
+    padding-left:5px;
+}
+.searchable-link {
+    padding:0 5px 0 5px;
+}
+.searchable-link:hover   {
+    cursor: pointer;
+    background: #eaeaea;
+}
+.select2-results__option {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.form-group .required::after {
+    content: " *";
+    color: red;
+}
+
+.form-check.is-invalid ~ .invalid-feedback {
+    display: block;
+}
+
+.dataTables_length label select {
+    width: 65px!important;
+}
+
+div.dt-button-collection {
+    padding: 0;
+}
+
+.buttons-columnVisibility {
+    display: block;
+}
+
+.buttons-columnVisibility.active {
+    background-color: rgba(128, 128, 128, 0.1);
+    font-weight: bolder;
+}
+
+/* (Vivek: 22-Feb 07:08 PM) datatable pagition floating to right side */
+.table-responsive > nav {
+    float: right;
+}
+
+/* @VISH added (Vivek: 22-Feb 11:37 AM) // removing show from datatable Columns button popup*/
+.btn:not(:disabled):not(.disabled).active {
+    box-shadow: none;
+}
